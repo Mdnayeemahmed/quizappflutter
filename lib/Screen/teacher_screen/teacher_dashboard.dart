@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:quizappflutter/Screen/teacher_screen/quiz_create.dart';
-import 'package:quizappflutter/Screen/view_result.dart';
+import 'package:quizappflutter/Screen/result/view_result.dart';
 
 import '../../Service/auth_service.dart';
 import '../../utilities/app_colors.dart';
 import '../../utilities/common_style.dart';
 import '../../widgets/common_container.dart';
-import '../loginscreen.dart';
+import '../login&signup/loginscreen.dart';
 
 class teacherDashboard extends StatefulWidget {
   const teacherDashboard({Key? key}) : super(key: key);
@@ -75,7 +75,7 @@ class _teacherDashboardState extends State<teacherDashboard> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               common_container(
-                tittle: 'Create Quiz',
+                title: 'Create Quiz',
                 onTap: () {
                   Get.to(TeacherModule());
                 },
@@ -84,7 +84,7 @@ class _teacherDashboardState extends State<teacherDashboard> {
                 width: 10,
               ),
               common_container(
-                tittle: 'View Result',
+                title: 'View Result',
                 onTap: () {
                   Get.to(viewresult());
                 },

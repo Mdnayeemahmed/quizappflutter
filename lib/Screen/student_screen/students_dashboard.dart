@@ -1,13 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:quizappflutter/Screen/loginscreen.dart';
-import 'package:quizappflutter/Screen/student_screen/quiz_attempt.dart';
+import 'package:quizappflutter/Screen/login&signup/loginscreen.dart';
+import 'package:quizappflutter/Screen/student_screen/quizattempt.dart';
 import 'package:quizappflutter/utilities/app_colors.dart';
 import 'package:quizappflutter/utilities/common_style.dart';
 import '../../Service/auth_service.dart';
 import 'package:get/get.dart';
 
 import '../../widgets/common_container.dart';
+import '../result/view_result.dart';
 
 class studentdashboard extends StatefulWidget {
   const studentdashboard({Key? key}) : super(key: key);
@@ -72,18 +73,18 @@ class _studentdashboardState extends State<studentdashboard> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               common_container(
-                tittle: 'Attempt Quiz',
+                title: 'Attempt Quiz',
                 onTap: () {
-                  Get.to(StudentModule());
+                  Get.to(quizpage());
                 },
               ),
               SizedBox(
                 width: 10,
               ),
               common_container(
-                tittle: 'View Result',
+                title: 'View Result',
                 onTap: () {
-                  Get.to(StudentModule());
+                  Get.to(viewresult());
                 },
               )
             ],
