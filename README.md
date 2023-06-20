@@ -1,5 +1,4 @@
 # quizappflutter
-A quiz app based on firebase firestore
 
 ## App Ui
 
