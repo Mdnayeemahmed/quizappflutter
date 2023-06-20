@@ -5,6 +5,8 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final CollectionReference _usersCollection =
   FirebaseFirestore.instance.collection('Users');
+  final CollectionReference _resultsCollection =
+  FirebaseFirestore.instance.collection('results');
 
   // Sign up with email and password
   Future<UserCredential?> signUpWithEmailAndPassword(
@@ -53,7 +55,38 @@ class AuthService {
     }
   }
 
-  User? getCurrentUser() {
+  Future<User?> getCurrentUser() async {
     return _auth.currentUser;
+  }
+
+  Future<Map<String, dynamic>> fetchQuizResults(String quizId) async {
+    final docSnapshot = await _resultsCollection.doc(quizId).get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>?;
+
+      if (data != null) {
+        return data;
+      }
+    }
+
+    return {};
+  }
+
+  Future<Map<String, dynamic>> fetchQuizData(String quizId) async {
+    final quizSnapshot = await FirebaseFirestore.instance
+        .collection('examquestion')
+        .doc(quizId)
+        .get();
+
+    if (quizSnapshot.exists) {
+      final data = quizSnapshot.data() as Map<String, dynamic>?;
+
+      if (data != null) {
+        return data;
+      }
+    }
+
+    return {};
   }
 }

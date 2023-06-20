@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
+import 'package:quizappflutter/Screen/student_screen/students_dashboard.dart';
+import 'package:quizappflutter/Service/auth_service.dart';
 
 class AnswerTheQuiz extends StatefulWidget {
   final String quizId;
@@ -16,6 +19,7 @@ class _AnswerTheQuizState extends State<AnswerTheQuiz> {
   List<String> selectedOptions = [];
   int score = 0;
   List<Map<String, dynamic>> result = [];
+  AuthService authService = AuthService();
 
   void _selectOption(int questionIndex, int optionIndex) {
     setState(() {
@@ -82,6 +86,8 @@ class _AnswerTheQuizState extends State<AnswerTheQuiz> {
           TextButton(
             onPressed: () {
               Navigator.of(context).pop(); // Close the dialog
+              Get.offAll(() =>
+                  studentdashboard()); // Replace with your student dashboard screen
             },
             child: Text('OK'),
           ),
@@ -93,22 +99,14 @@ class _AnswerTheQuizState extends State<AnswerTheQuiz> {
   @override
   void initState() {
     super.initState();
-    _fetchQuizData();
-  }
-
-  Future<void> _fetchQuizData() async {
-    final quizSnapshot = await FirebaseFirestore.instance
-        .collection('examquestion')
-        .doc(widget.quizId)
-        .get();
-
-    if (quizSnapshot.exists) {
+    authService.fetchQuizData(widget.quizId).then((data) {
       setState(() {
-        quizData = List<Map<String, dynamic>>.from(
-            quizSnapshot.get('questions') ?? []);
+        quizData = List<Map<String, dynamic>>.from(data['questions'] ?? []);
         selectedOptions = List<String>.filled(quizData.length, '');
       });
-    }
+    }).catchError((error) {
+      print('Error fetching quiz data: $error');
+    });
   }
 
   @override

@@ -14,7 +14,7 @@ class _quizpageState extends State<quizpage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hlw'),
+        title: Text('Quiz Homepage'),
       ),
       body: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance.collection("examquestion").snapshots(),

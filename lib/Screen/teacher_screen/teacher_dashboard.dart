@@ -30,7 +30,7 @@ class _teacherDashboardState extends State<teacherDashboard> {
   }
 
   Future<void> _getUserData() async {
-    User? user = _authService.getCurrentUser();
+    User? user = await _authService.getCurrentUser();
     if (user != null) {
       setState(() {
         _user = user;

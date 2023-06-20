@@ -28,7 +28,7 @@ class _studentdashboardState extends State<studentdashboard> {
   }
 
   Future<void> _getUserData() async {
-    User? user = _authService.getCurrentUser();
+    User? user = await _authService.getCurrentUser();
     if (user != null) {
       setState(() {
         _user = user;
@@ -39,56 +39,58 @@ class _studentdashboardState extends State<studentdashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: primaryColor,
-          flexibleSpace: Container(
-            margin: EdgeInsets.fromLTRB(10, 40, 10, 0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Hello Learner',
-                  style: titleStyle,
-                ),
-                Text(
-                  _user?.email ?? '',
-                  style: subStyle,
-                ),
-              ],
-            ),
-          ),
-          actions: [
-            IconButton(
-                onPressed: () async {
-                  await _authService.signOut();
-                  Get.offAll(loginscreen());
-                },
-                icon: Icon(Icons.output))
-          ],
-        ),
-        body: Center(
-          child: Row(
+      appBar: AppBar(
+        backgroundColor: primaryColor,
+        flexibleSpace: Container(
+          margin: EdgeInsets.fromLTRB(10, 40, 10, 0),
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              common_container(
-                title: 'Attempt Quiz',
-                onTap: () {
-                  Get.to(quizpage());
-                },
+              Text(
+                'Hello Learner',
+                style: titleStyle,
               ),
-              SizedBox(
-                width: 10,
+              Text(
+                _user?.email ?? '',
+                style: subStyle,
               ),
-              common_container(
-                title: 'View Result',
-                onTap: () {
-                  Get.to(viewresult());
-                },
-              )
             ],
           ),
-        ));
+        ),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              await _authService.signOut();
+              Get.offAll(loginscreen());
+            },
+            icon: Icon(Icons.output),
+          )
+        ],
+      ),
+      body: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            common_container(
+              title: 'Attempt Quiz',
+              onTap: () {
+                Get.to(quizpage());
+              },
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            common_container(
+              title: 'View Result',
+              onTap: () {
+                Get.to(viewresult());
+              },
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

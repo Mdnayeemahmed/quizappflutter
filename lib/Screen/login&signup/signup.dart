@@ -166,7 +166,7 @@ class _SignupState extends State<Signup> {
                       });
                       if (userCredential != null) {
                         // Sign in successful
-                        print('sign up');
+                        _showErrorSnackbar('Sign up Done.');
                         Get.to(loginscreen());
                       } else {
                         // Sign in failed

@@ -36,6 +36,13 @@ dependencies:
   firebase_auth: ^4.2.1
   cloud_firestore_platform_interface: ^5.9.1
   cloud_firestore: ^4.8.1
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/QuizAppLogo.png"
+
 
 
 
@@ -63,3 +70,5 @@ flutter:
 
   assets:
     - assets/images/
+
+

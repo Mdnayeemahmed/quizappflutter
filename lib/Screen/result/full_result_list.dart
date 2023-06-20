@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:quizappflutter/Service/auth_service.dart';
 
 class FullResultOption extends StatefulWidget {
   final String quizId;
@@ -12,32 +14,25 @@ class FullResultOption extends StatefulWidget {
 
 class _FullResultOptionState extends State<FullResultOption> {
   List<dynamic> result = [];
+  AuthService authService = AuthService();
 
   @override
   void initState() {
     super.initState();
-    _fetchQuizResults();
-  }
-
-  Future<void> _fetchQuizResults() async {
-    final resultsCollection = FirebaseFirestore.instance.collection('results');
-    final docSnapshot = await resultsCollection.doc(widget.quizId).get();
-
-    if (docSnapshot.exists) {
-      final data = docSnapshot.data();
-      if (data != null) {
-        setState(() {
-          result = List<dynamic>.from(data['result']);
-        });
-      }
-    }
+    authService.fetchQuizResults(widget.quizId).then((data) {
+      setState(() {
+        result = List<dynamic>.from(data['result']);
+      });
+    }).catchError((error) {
+      print('Error fetching quiz results: $error');
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Quiz Results Of All Student'),
+        title: Text('Quiz Results Of '+widget.quizId),
       ),
       body: result.isEmpty
           ? Center(child: CircularProgressIndicator())
