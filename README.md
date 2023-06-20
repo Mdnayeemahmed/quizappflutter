@@ -2,6 +2,10 @@
 
 This a flutter app based on firebase auth and firestore.This app is develop for practise purpose.
 
+## apk Link
+
+https://drive.google.com/file/d/1veJs7emKQ4IGN07LiLmvQmEfrpfCBaf9/view?usp=sharing
+
 # App Ui
 
 ## Login & Sign_up UI
