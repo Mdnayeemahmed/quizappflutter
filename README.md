@@ -1,15 +1,17 @@
 # quizappflutter
 
-## App Ui
+This a flutter app based on firebase auth and firestore.This app is develop for practise purpose.
 
-# Login & Sign_up UI
+# App Ui
+
+## Login & Sign_up UI
 
 ![image](https://github.com/Mdnayeemahmed/quizappflutter/assets/93244952/98ec231b-a07c-486b-8ceb-8237eef28dc6)
 
 ![image](https://github.com/Mdnayeemahmed/quizappflutter/assets/93244952/0bcba991-03c6-49c7-8e5d-1da42d0177c7)
 
 
-# Student Dashboad
+## Student Dashboad
 
 ![image](https://github.com/Mdnayeemahmed/quizappflutter/assets/93244952/f5d920e8-793d-49e8-98de-059d80fc59bf)
 
@@ -23,7 +25,7 @@
 
 ![image](https://github.com/Mdnayeemahmed/quizappflutter/assets/93244952/9d569e5e-477c-4593-ae12-63a9224ec0ed)
 
-# Teacher Dashboad
+## Teacher Dashboad
 
 ![image](https://github.com/Mdnayeemahmed/quizappflutter/assets/93244952/d29a8f53-db59-4eb6-9b37-a01485a89592)
 
